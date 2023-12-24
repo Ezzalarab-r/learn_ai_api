@@ -29,10 +29,10 @@ class CourseController extends Controller
     }
 
 
-    public function coursesDetails(Request $request)
+    public function courseDetails(Request $request)
     {
         try {
-            $id = $request->id;
+            $id = $request->courseId;
             $courses = Course::where('id', '=', $id)->select(
                 'id',
                 'name',
@@ -42,14 +42,13 @@ class CourseController extends Controller
                 'lessons_count',
                 'price',
                 'video_length',
-                '',
-            )->get();
+            )->get()->first();
 
             return response()->json([
                 "status" => true,
                 "message" => "Course Fetched Successfully",
                 "data" => $courses,
-            ], 200,);
+            ], 200);
         } catch (\Throwable $th) {
             return response()->json([
                 "status" => false,
