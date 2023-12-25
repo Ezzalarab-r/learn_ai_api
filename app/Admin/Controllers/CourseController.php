@@ -30,7 +30,10 @@ class CourseController extends AdminController
         $grid->column('lessons_count', __('Lessons num'));
         $grid->column('video_length', __('Video length'));
         $grid->column('followers', __('Followers'));
-        $grid->column('score', __('Score'));
+        $grid->column('score', __('Score'))->display(function ($score) {
+            return number_format($score, 2);
+        });
+        $grid->column('resourses_count', __('Resourses Count'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -52,6 +55,7 @@ class CourseController extends AdminController
         $show->field('lessons_count', __('Lessons num'));
         $show->field('video_length', __('Video length'));
         $show->field('followers', __('Followers'));
+        $show->field('resourses_count', __('Resourses Count'));
         $show->field('score', __('Score'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -78,9 +82,11 @@ class CourseController extends AdminController
         $form->decimal('price', __('Price'));
         $form->number('lessons_count', __('Number of lessons'));
         $form->number('video_length', __('Video Length'));
+        $form->number('resourses_count', __('Resourses Count'));
 
         $result = User::pluck('name', 'token');
         $form->select('user_token', __('Teacher'))->options($result);
+
 
         $form->display('created_at', __('Created at'));
         $form->display('updated_at', __('Updated at'));

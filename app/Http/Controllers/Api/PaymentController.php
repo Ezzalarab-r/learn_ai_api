@@ -105,7 +105,7 @@ class PaymentController extends Controller
             return response()->json([
                 "status" => true,
                 "message" => "Payment Session Created",
-                "data" => $$checkoutSession->url,
+                "data" => $checkoutSession->url,
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([

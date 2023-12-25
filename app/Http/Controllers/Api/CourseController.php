@@ -41,8 +41,9 @@ class CourseController extends Controller
                 'thumbnail',
                 'lessons_count',
                 'price',
+                'resourses_count',
                 'video_length',
-            )->get()->first();
+            )->first();
 
             return response()->json([
                 "status" => true,
